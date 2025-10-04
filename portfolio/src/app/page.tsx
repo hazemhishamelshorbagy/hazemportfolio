@@ -5,11 +5,15 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Testimonials from "@/components/Testimonials";
 import ContentFeed from "@/components/ContentFeed";
+import Contact from "@/components/Contact";
+import Hud from "@/components/Hud";
+import QuestObserver from "@/components/QuestObserver";
 
 export default function Home() {
   return (
     <div className="font-sans">
       <main className="pt-20">
+        <QuestObserver />
         <Hero />
         <About />
         <Skills />
@@ -17,6 +21,7 @@ export default function Home() {
         <Experience />
         <Testimonials />
         <ContentFeed />
+        <Contact />
         <section id="cta" className="mx-auto max-w-5xl px-6 py-20 text-center">
           <h2 className="text-2xl sm:text-3xl font-semibold">Let’s build something exceptional</h2>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
@@ -29,6 +34,7 @@ export default function Home() {
       <footer className="border-t border-white/10 py-10 text-center text-white/50">
         © {new Date().getFullYear()} Your Name — Built with Next.js
       </footer>
+      <Hud />
     </div>
   );
 }

@@ -18,6 +18,7 @@ export default function Header() {
           <a href="#experience" className="hover:opacity-80">Experience</a>
           <a href="#testimonials" className="hover:opacity-80">Testimonials</a>
           <a href="#content" className="hover:opacity-80">Content</a>
+          <a href="#contact" className="hover:opacity-80">Contact</a>
         </nav>
         <div className="flex items-center gap-3">
           <a
