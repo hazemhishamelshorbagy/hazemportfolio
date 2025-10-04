@@ -1,19 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ParallaxBanner, ParallaxProvider } from "react-scroll-parallax";
+import { useScroll, useTransform, motion as m } from "framer-motion";
+import { useRef } from "react";
 
 export default function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const yBack = useTransform(scrollYProgress, [0, 1], ["0px", "-120px"]);
+  const yMid = useTransform(scrollYProgress, [0, 1], ["0px", "-80px"]);
+  const yFront = useTransform(scrollYProgress, [0, 1], ["0px", "-40px"]);
+
   return (
-    <section id="hero" className="relative min-h-[90svh] flex items-center justify-center overflow-hidden">
-      <ParallaxProvider>
-        <ParallaxBanner
-          layers={[
-            { image: "/globe.svg", speed: -20 },
-          ]}
-          className="absolute inset-0 opacity-[0.04]"
-        />
-      </ParallaxProvider>
+    <section ref={ref} id="hero" className="relative min-h-[90svh] flex items-center justify-center overflow-hidden">
+      <m.div style={{ y: yBack }} className="absolute inset-0">
+        <div className="w-full h-full bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.06),transparent_50%)]" />
+      </m.div>
+      <m.img style={{ y: yMid }} src="/globe.svg" alt="bg" className="absolute inset-0 w-full h-full object-cover opacity-[0.04]" />
+      <m.div style={{ y: yFront }} className="pointer-events-none absolute -top-32 right-20 size-[420px] rounded-full bg-fuchsia-500/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
         <motion.h1
@@ -47,7 +51,8 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.08),transparent_40%)]" />
+      {/* additional very subtle overlay for contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30" />
     </section>
   );
 }
