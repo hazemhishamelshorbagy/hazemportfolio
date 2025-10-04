@@ -8,6 +8,8 @@ import ContentFeed from "@/components/ContentFeed";
 import Contact from "@/components/Contact";
 import Hud from "@/components/Hud";
 import QuestObserver from "@/components/QuestObserver";
+import QuestLog from "@/components/QuestLog";
+import LevelUpToast from "@/components/LevelUpToast";
 
 export default function Home() {
   return (
@@ -35,6 +37,8 @@ export default function Home() {
         © {new Date().getFullYear()} Your Name — Built with Next.js
       </footer>
       <Hud />
+      <QuestLog />
+      <LevelUpToast />
     </div>
   );
 }

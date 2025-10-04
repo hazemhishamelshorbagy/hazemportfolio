@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useTheme } from "@/stores/useTheme";
-import { FiMoon, FiSun, FiDownload, FiLinkedin } from "react-icons/fi";
+import { FiMoon, FiSun, FiDownload, FiLinkedin, FiList } from "react-icons/fi";
+import { useGame } from "@/stores/useGame";
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
+  const { toggleLog, complete } = useGame();
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/10 bg-black/20 text-foreground">
@@ -24,6 +26,7 @@ export default function Header() {
           <a
             className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs hover:bg-white/10 transition"
             href="/cv.pdf" download
+            onClick={() => complete("download_cv", 50)}
           >
             <FiDownload /> <span>Download CV</span>
           </a>
@@ -35,6 +38,13 @@ export default function Header() {
           >
             <FiLinkedin />
           </a>
+          <button
+            className="rounded-full p-2 border border-white/15 hover:bg-white/10 transition"
+            onClick={toggleLog}
+            aria-label="Quest log"
+          >
+            <FiList />
+          </button>
           <button
             className="rounded-full p-2 border border-white/15 hover:bg-white/10 transition"
             onClick={toggleTheme}
